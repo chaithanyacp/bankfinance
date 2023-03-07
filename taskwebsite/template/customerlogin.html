@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="padding-top:20px;" >
+    <a class="btn btn-primary" href="{% url 'test_app:login' %}">Logout</a>
+    <div class="container">
+        <div class="row">
+            {% if user.is_authenticated %}
+                <h1> Hello {{user.username}}</h1>
+            {% endif %}
+        </div>
+        <div class="col">
+            {% csrf_token %}
+            <a class="btn" href="{% url 'test_app:customer_form' %}">Click here</a>
+            <a class="btn" href="{% url 'bank_app:index' %}">Home</a>
+        </div>
+        {% for msg in messages %}
+            <i>{{msg}}</i>
+            {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
